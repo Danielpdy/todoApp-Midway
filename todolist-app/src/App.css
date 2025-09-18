@@ -10,7 +10,8 @@ html, body, #root {
   margin-right: 60px;
   margin-left: 60px;
   margin-top: 60px;
-  height: 480px;
+  padding-bottom: 40px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -89,14 +90,16 @@ html, body, #root {
 }
 
 .tasksContainer{
-  border: 1px solid rgb(175, 170, 170);
+  border: 1px solid rgb(216, 210, 210);
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: black;
   width: 100%;
+  margin-top: 20px;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .formatOptionLabel{
@@ -106,4 +109,52 @@ html, body, #root {
 }
 .priorityIcons{
   width: 18px;
+}
+
+.defaultDisplayIcon{
+  width: 34px;
+}
+
+.defaultDisplay{
+  color: gray;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.defaultDisplayContainer{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.defaultDisplayText{
+  color: gray;
+  font-size: 14px;
+}
+
+.tasksBox{
+  
+  color: black;
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.tasksBox2{
+  border: 1px solid rgb(216, 210, 210);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: black;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  
 }
