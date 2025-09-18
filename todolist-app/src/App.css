@@ -1,0 +1,109 @@
+html, body, #root { 
+  height:100%; 
+  width:100%; 
+  margin:0;
+  background-color: whitesmoke; 
+}
+.appContainer{
+  border-radius: 6px;
+  border: 2px solid rgb(189, 186, 186);
+  margin-right: 60px;
+  margin-left: 60px;
+  margin-top: 60px;
+  height: 480px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mainContainer{
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  
+}
+
+.contentContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.titlesContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title{
+  color: RGB(160, 125, 241);
+}
+
+.subTitle{
+  color: black;
+}
+
+.titleIcon{
+  width: 50px;
+}
+.addIcon{
+  background-color: whitesmoke;
+}
+.addIconImage{
+  width: 34px;
+}
+
+.subContentContainer{
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.inputBox{
+  padding: 10px 10px;
+  width: 280px;
+  background-color: whitesmoke;
+  border-radius: 6px;
+  border: 1px solid rgb(180, 174, 174);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.dropdowns{
+  background-color: whitesmoke;
+  color: gray;
+  border: 1px solid rgb(180, 174, 174);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 10px 10px;
+  width: 100px;
+}
+
+.addButton{
+  background: linear-gradient(#3b82f6, #8b5cf6);
+  font-size: 20px;
+  padding: 5px 12px;
+  font-weight: 800;
+}
+
+.tasksContainer{
+  border: 1px solid rgb(175, 170, 170);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: black;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.formatOptionLabel{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.priorityIcons{
+  width: 18px;
+}
