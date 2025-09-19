@@ -19,6 +19,7 @@ function App() {
 
     const newTask = {
       Id: crypto.randomUUID(),
+      CreatedDate: new Date().toLocaleDateString(),
       Task: input,
       Type: type,
       Priority: priority
