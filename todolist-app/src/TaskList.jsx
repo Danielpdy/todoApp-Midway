@@ -9,7 +9,8 @@ import entertainmentIcon from './assets/icons/entertainmentIcon.png';
 import otherIcon from './assets/icons/otherIcon.png';
 import deleteIcon from './assets/icons/deleteIcon.png';
 
-export default function TaskList ({ tasks = [] }) {
+export default function TaskList ({ tasks = [], onDelete }) {
+
 
     return (
         <div className='tasksBox'>
@@ -60,7 +61,9 @@ export default function TaskList ({ tasks = [] }) {
 
                     <div className='taaskContainers'>
                         <div className='singleTaskBox'>
-                            <button className='deleteButton'><img src={deleteIcon}/></button>
+                            <button className='deleteButton' onClick={() => onDelete(task.Id)}>
+                                <img src={deleteIcon}/>
+                            </button>
                         </div>
                     </div>
 

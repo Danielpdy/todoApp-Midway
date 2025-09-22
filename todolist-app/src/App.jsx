@@ -12,6 +12,10 @@ function App() {
   const [input, setInput] = useState("");
   const [type, setType] = useState("");
   const [priority, setPriority] = useState("");
+  
+  const deleteTask = (id) => {
+    setTasks(prev => prev.filter(t => t.Id !== id));
+  }
 
   const addTasks = () => {
 
@@ -84,7 +88,7 @@ function App() {
             {tasks.length === 0 ? (
               <DefaultDisplay />
             ) : (
-              <TaskList tasks={tasks} />
+              <TaskList tasks={tasks} onDelete={deleteTask} />
             ) }
 
 
