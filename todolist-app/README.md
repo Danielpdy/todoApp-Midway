@@ -1,12 +1,13 @@
-# React + Vite
+# Todo List Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This is a full-stack todo list application built with React (frontend) and ASP.NET Core (backend). The app allows users to create, view, delete, and track the status of their tasks with a clean, responsive interface.
 
-Currently, two official plugins are available:
+## Backend Technologies
+The backend is built with **.NET 9** and **ASP.NET Core Web API**, using **Entity Framework Core** for database operations with **PostgreSQL/Supabase** as the database. It implements three REST API endpoints: GET for retrieving all tasks, POST for creating new tasks, and DELETE for removing tasks. Additionally, a PATCH endpoint updates task status between "pending" and "done". CORS is configured to allow communication with the React frontend running on localhost.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Frontend Features
+The frontend is built with **React** and **Vite**, featuring a responsive grid-based layout that works across desktop and mobile devices. Users can add tasks with properties (name, type, priority, created date), delete tasks with optimistic UI updates, and mark tasks as done or pending using a custom-styled dropdown menu. The interface uses CSS Grid for perfect column alignment and includes smooth animations and purple accent colors throughout. The design is fully responsive with optimized layouts for tablets and mobile screens.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
+The backend is located in `todolist-app/backend/` with controllers in `Controllers/TasksController.cs` and the data model in `Models/Task.cs`. The frontend lives in `todolist-app/src/` with the main component in `App.jsx`, task list rendering in `TaskList.jsx`, and API services in `service/TaskService.js`. The application uses optimistic updates for a responsive user experience, with automatic rollback on errors.
