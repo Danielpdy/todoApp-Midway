@@ -9,62 +9,65 @@ import entertainmentIcon from './assets/icons/entertainmentIcon.png';
 import otherIcon from './assets/icons/otherIcon.png';
 import deleteIcon from './assets/icons/deleteIcon.png';
 
-export default function TaskList ({ tasks = [], onDelete }) {
+export default function TaskList ({ tasks = [], onDelete, onStatusChange }) {
 
 
     return (
         <div className='tasksBox'>
+            <div className='tasksHeader'>
+                <div className='headerItem'>Created</div>
+                <div className='headerItem'>Name</div>
+                <div className='headerItem'>Type</div>
+                <div className='headerItem'>Priority</div>
+                <div className='headerItem'>Status</div>
+                <div className='headerItem'></div>
+            </div>
+
             {tasks.map((task) => (
-                <div className='tasksBox2'>
-
+                <div key={task.id} className='tasksBox2'>
 
                     <div className='taskContainers'>
-                        <div className='singleTaskBox'>
-                            <label className='taskLabels'>Created</label>
-                            <p className='taskName'>{task.CreatedDate}</p>
-                        </div>
+                        <p className='taskName'>{task.createdAt}</p>
                     </div>
                     <div className='taskContainers'>
-                        <div className='singleTaskBox'>
-                            <label className='taskLabels'>Name</label>
-                            <p className='taskName'>{task.Task}</p>
-                        </div>    
+                        <p className='taskName'>{task.name}</p>
                     </div>
 
                     <div className='taskContainers'>
-                        <div className='singleTaskBox'>
-                            <label className='taskLabels'>Type</label>
-                            <div className='displayPriority'>
-                                {task.Type === "personal" ? <img className='priorityIcons' src={personalIcon} /> : 
-                                task.Type === "work" ? <img className='priorityIcons' src={workIcon} /> : 
-                                task.Type === "Health" ? <img className='priorityIcons' src={healthIcon} /> : 
-                                task.Type === "entertainment" ? <img className='priorityIcons' src={entertainmentIcon} /> : 
-                                task.Type === "other" ? <img className='priorityIcons' src={otherIcon} /> : null}
-                                <p className='taskName'>{task.Type}</p>
-                            </div>    
+                        <div className='displayPriority'>
+                            {task.type === "personal" ? <img className='priorityIcons' src={personalIcon} /> :
+                            task.type === "work" ? <img className='priorityIcons' src={workIcon} /> :
+                            task.type === "Health" ? <img className='priorityIcons' src={healthIcon} /> :
+                            task.type === "entertainment" ? <img className='priorityIcons' src={entertainmentIcon} /> :
+                            task.type === "other" ? <img className='priorityIcons' src={otherIcon} /> : null}
+                            <p className='taskName'>{task.type}</p>
                         </div>
                     </div>
 
                     <div className='taskContainers'>
-                        <div className='singleTaskBox'>
-                            <label className='taskLabels'>Priority</label>
-                            <div className='displayPriority'>
-                                {task.Priority === "low" ? <img className='priorityIcons' src={lowIcon} /> : 
-                                task.Priority === "medium" ? <img className='priorityIcons' src={mediumIcon} /> :
-                                task.Priority === "high" ? <img className='priorityIcons' src={highIcon} /> : null}
-                                <p className='taskName'>{task.Priority}</p>
-                            </div>    
+                        <div className='displayPriority'>
+                            {task.priority === "low" ? <img className='priorityIcons' src={lowIcon} /> :
+                            task.priority === "medium" ? <img className='priorityIcons' src={mediumIcon} /> :
+                            task.priority === "high" ? <img className='priorityIcons' src={highIcon} /> : null}
+                            <p className='taskName'>{task.priority}</p>
                         </div>
                     </div>
 
-                    
+                    <div className='taskContainers'>
+                        <select
+                            className='statusDropdown'
+                            value={task.status || "pending"}
+                            onChange={(e) => onStatusChange(task.id, e.target.value)}
+                        >
+                            <option value="pending">⏳ Pending</option>
+                            <option value="done">✅ Done</option>
+                        </select>
+                    </div>
 
                     <div className='taaskContainers'>
-                        <div className='singleTaskBox'>
-                            <button className='deleteButton' onClick={() => onDelete(task.Id)}>
-                                <img src={deleteIcon}/>
-                            </button>
-                        </div>
+                        <button className='deleteButton' onClick={() => onDelete(task.id)}>
+                            <img src={deleteIcon}/>
+                        </button>
                     </div>
 
 

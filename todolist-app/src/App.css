@@ -1,8 +1,8 @@
-html, body, #root { 
-  height:100%; 
-  width:100%; 
-  margin:0;
-  background-color: #D3D3D3; 
+html, body, #root {
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: #D3D3D3;
   display: flex;
   justify-content: center;
   align-items: start;
@@ -11,33 +11,34 @@ html, body, #root {
   border-radius: 6px;
   border: 2px solid rgb(189, 186, 186);
   margin-top: 60px;
-  padding-bottom: 60px;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
+  padding-bottom: 40px;
   width: 800px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .mainContainer{
-
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: start;
-  
 }
 
 .contentContainer{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
+  padding: 20px;
+  width: 100%;
 }
 .titlesContainer{
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .title{
@@ -62,6 +63,7 @@ html, body, #root {
   display: flex;
   justify-content: space-evenly;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .inputBox{
@@ -135,17 +137,36 @@ html, body, #root {
   font-size: 14px;
 }
 
-.tasksBox{
-  
-  color: black;
+.tasksScrollContainer{
   width: 100%;
-  margin-top: 20px;
-  padding: 14px;
+}
 
+.tasksBox{
+  color: black;
+  width: calc(100% - 48px);
+  padding: 14px 24px;
+  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
+}
+
+.tasksHeader{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 110px 2fr 130px 110px 160px 70px;
+  gap: 10px;
+  padding: 12px 20px;
+  border-bottom: 2px solid rgb(189, 186, 186);
+}
+
+.headerItem{
+  font-weight: 700;
+  font-size: 15px;
+  color: RGB(160, 125, 241);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .tasksBox2{
@@ -154,21 +175,26 @@ html, body, #root {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: black;
   width: 100%;
-
-  display: flex;
+  display: grid;
+  grid-template-columns: 110px 2fr 130px 110px 160px 70px;
   align-items: center;
-  justify-content: space-evenly;
-  
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 0 20px;
 }
 
-.singleTaskBox{
-  padding: 20px 20px;
+.taskContainers, .taaskContainers{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 0;
 }
 
 .displayPriority{
-display: flex;
-align-items: center;
-gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
 }
 
 .taskLabels{
@@ -192,4 +218,221 @@ gap: 6px;
 .deleteButton:hover{
   transform: scale(1.2);
   transition: transform 0.2s;
+}
+
+
+.statusDropdown{
+  appearance: none;
+  background-color: whitesmoke;
+  color: rgb(61, 61, 61);
+  border: 1px solid rgb(189, 186, 186);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  padding: 10px 35px 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23A07DF1' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 12px) center;
+  min-width: 130px;
+}
+
+.statusDropdown:hover{
+  border-color: RGB(160, 125, 241);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(160, 125, 241, 0.2);
+}
+
+.statusDropdown:focus{
+  border-color: RGB(160, 125, 241);
+  box-shadow: 0 0 0 3px rgba(160, 125, 241, 0.2);
+}
+
+.statusDropdown option{
+  padding: 10px;
+  font-size: 14px;
+  background-color: white;
+}
+
+@media (max-width: 768px) {
+  .appContainer {
+    width: 95%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .contentContainer {
+    padding: 20px;
+    gap: 18px;
+  }
+
+  .title {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .titleIcon {
+    width: 35px;
+  }
+
+  .subTitle {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .subContentContainer {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .inputBox {
+    width: calc(100% - 20px);
+    font-size: 15px;
+  }
+
+  .dropdowns {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .addButton {
+    width: 100%;
+    padding: 10px 12px;
+  }
+
+  .tasksHeader {
+    display: none;
+  }
+
+  .tasksBox {
+    width: calc(100% - 20px);
+    padding: 10px 10px;
+    gap: 12px;
+  }
+
+  .tasksBox2 {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 15px;
+    gap: 8px;
+    display: flex;
+    grid-template-columns: none;
+  }
+
+  .taskContainers, .taaskContainers {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(230, 230, 230);
+  }
+
+  .taskContainers:last-of-type {
+    border-bottom: none;
+  }
+
+  .taaskContainers {
+    border-bottom: none;
+    justify-content: center;
+    padding-top: 10px;
+  }
+
+  .singleTaskBox {
+    padding: 8px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .taskLabels {
+    min-width: 70px;
+    flex-shrink: 0;
+  }
+
+  .taskName {
+    margin: 0;
+    flex: 1;
+  }
+
+  .displayPriority {
+    flex: 1;
+  }
+
+  .deleteButton {
+    padding: 8px;
+  }
+
+  .deleteButton img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .statusDropdown {
+    min-width: 100%;
+    padding: 8px 28px 8px 10px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .appContainer {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .contentContainer {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .titleIcon {
+    width: 32px;
+  }
+
+  .subTitle {
+    font-size: 12px;
+  }
+
+  .inputBox {
+    font-size: 14px;
+    padding: 12px 10px;
+  }
+
+  .dropdowns {
+    padding: 12px 10px;
+  }
+
+  .tasksBox {
+    width: calc(100% - 16px);
+    padding: 8px 8px;
+  }
+
+  .tasksBox2 {
+    padding: 12px;
+  }
+
+  .taskLabels {
+    font-size: 13px;
+    min-width: 60px;
+  }
+
+  .taskName {
+    font-size: 13px;
+  }
 }

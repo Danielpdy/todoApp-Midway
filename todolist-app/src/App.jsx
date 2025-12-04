@@ -4,7 +4,8 @@ import plusIcon from './assets/icons/plusIcon.png';
 import titleIcon from './assets/icons/titleIcon.png';
 import DefaultDisplay from './DefaultDisplay';
 import TaskList from './TaskList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { AddTask, GetTasks, DeleteTask, UpdateTaskStatus } from './service/TaskService';
 
 function App() {
 
@@ -12,29 +13,63 @@ function App() {
   const [input, setInput] = useState("");
   const [type, setType] = useState("");
   const [priority, setPriority] = useState("");
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
   
-  const deleteTask = (id) => {
-    setTasks(prev => prev.filter(t => t.Id !== id));
+  const deleteTask = async (id) => {
+    setTasks(prev => prev.filter(t => t.id !== id));
+
+    try {
+      await DeleteTask(id);
+    } catch (error) {
+      console.error("Failed to delete task:", error);
+      fetchTasks();
+    }
   }
 
-  const addTasks = () => {
+  const updateStatus = async (id, status) => {
+    setTasks(prev => prev.map(t => t.id === id ? {...t, status} : t));
 
-    if (!input.trim() || !input || !type || !priority) return;
-
-    const newTask = {
-      Id: crypto.randomUUID(),
-      CreatedDate: new Date().toLocaleDateString(),
-      Task: input,
-      Type: type,
-      Priority: priority
+    try {
+      await UpdateTaskStatus(id, status);
+    } catch (error) {
+      console.error("Failed to update status:", error);
+      fetchTasks();
     }
+  }
 
-    setTasks(prev => [...prev, newTask]);
+  const newTask = {
+    Name: input,
+    Type: type,
+    Priority: priority,
+    CreatedAt: new Date().toISOString().split('T')[0],
+  };
+
+  const addTasks = async () => {
+    if (!newTask) return;
+
+    const tempId = Date.now();
+    setTasks(prev => [...prev, {...newTask, id: tempId}]);
+
+    try{
+      const data = await AddTask(newTask);
+      setTasks(prev => prev.map(t => t.id === tempId ? data : t));
+    } catch(error){
+      setTasks(prev => prev.filter(t => t.id !== tempId));
+      console.error("Failed to add task");
+    }
 
     setInput("");
     setType("");
     setPriority("");
   };
+
+  async function fetchTasks() {
+    const data = await GetTasks();
+    setTasks(data);
+  }
 
 
   return (
@@ -50,8 +85,8 @@ function App() {
             <div className='subContentContainer'>
 
               <div>
-                <input className='inputBox' value={input} 
-                onChange={(e) => setInput(e.target.value)} 
+                <input className='inputBox' value={input}
+                onChange={(e) => setInput(e.target.value)}
                 type="text" placeholder='What do you have to do for today?' />
               </div>
 
@@ -85,12 +120,13 @@ function App() {
 
             </div>
 
-            {tasks.length === 0 ? (
-              <DefaultDisplay />
-            ) : (
-              <TaskList tasks={tasks} onDelete={deleteTask} />
-            ) }
-
+            <div className='tasksScrollContainer'>
+              {tasks.length === 0 ? (
+                <DefaultDisplay />
+              ) : (
+                <TaskList tasks={tasks} onDelete={deleteTask} onStatusChange={updateStatus} />
+              ) }
+            </div>
 
           </div>
         </div>
